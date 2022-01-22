@@ -1,6 +1,6 @@
 const articleRouter = require("express").Router();
 const { celebrate, Joi, errors } = require("celebrate");
-const ObjectId = require("mongoose").Types.ObjectId;
+const object = require("mongoose").Types.ObjectId;
 const {
   getArticles,
   addArticle,
@@ -12,7 +12,7 @@ const validateObjId = celebrate({
     articleId: Joi.string()
       .required()
       .custom((value, helpers) => {
-        if (ObjectId.isValid(value)) {
+        if (object.isValid(value)) {
           return value;
         }
         return helpers.message("Wrong id");
