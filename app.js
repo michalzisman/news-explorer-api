@@ -12,14 +12,16 @@ const { requestLogger, errorLogger } = require("./middleware/logger");
 const usersRouter = require("./routes/users");
 const articleRouter = require("./routes/articles");
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, PROD_DB } = process.env;
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.options("*", cors());
-mongoose.connect("mongodb://localhost:27017/finalproject");
+mongoose.connect(
+  NODE_ENV === "production" ? PROD_DB : "mongodb://localhost:27017/finalproject"
+);
 app.use(helmet());
 app.use(requestLogger);
 
