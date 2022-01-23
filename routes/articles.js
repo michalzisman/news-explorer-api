@@ -15,7 +15,7 @@ const validateObjId = celebrate({
         if (object.isValid(value)) {
           return value;
         }
-        return helpers.message("Wrong id");
+        return helpers.message("Article with the given id was not found");
       }),
   }),
 });
