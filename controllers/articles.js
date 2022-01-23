@@ -17,12 +17,13 @@ module.exports.getArticles = (req, res, next) => {
 };
 
 module.exports.addArticle = (req, res, next) => {
-  const { keyword, title, text, date, link, image } = req.body;
+  const { keyword, title, text, date, source, link, image } = req.body;
   Article.create({
     keyword,
     title,
     text,
     date,
+    source,
     link,
     image,
     owner: req.user._id,
