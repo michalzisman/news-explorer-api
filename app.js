@@ -28,11 +28,10 @@ app.use(requestLogger);
 app.post("/signup", usersRouter);
 app.post("/signin", usersRouter);
 
-app.use(auth); // always put after signup and signin and above all routes that need authorization
-app.get("/users/me", usersRouter);
-app.get("/articles", articleRouter);
-app.post("/articles", articleRouter);
-app.delete("/articles/:articleId", articleRouter);
+app.get("/users/me", auth, usersRouter);
+app.get("/articles", auth, articleRouter);
+app.post("/articles", auth, articleRouter);
+app.delete("/articles/:articleId", auth, articleRouter);
 app.get("*", router);
 app.use(errorLogger);
 app.use(errors());
